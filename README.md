@@ -40,8 +40,9 @@ Desmarcar algú demana confirmació, per evitar tocs accidentals.
    accés "Qualsevol persona". Copia la URL acabada en `/exec`.
 5. Posa aquesta URL a `docs/config.js` i publica.
 
-Si s'editen les llistes del full, l'app les recull sola en ≤5 min; per forçar-ho
-executa `buidaCache` des de l'editor.
+Si s'editen les llistes del full, l'app les recull sola en ≤5 min. Per veure-ho
+a l'instant, el botó ⟳ de la capçalera torna a llegir llistes i marques del full
+saltant-se la memòria cau del servidor.
 
 ## Desenvolupament
 
