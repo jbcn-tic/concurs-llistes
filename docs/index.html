@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#7a0e1e" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Passar llista · Concurs</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__title">
+        <strong>Passar llista</strong>
+        <span>Concurs de Castells 2026</span>
+      </div>
+      <button id="sync" class="sync" type="button" title="Estat de la sincronització">
+        <span class="sync__dot"></span><span id="sync-text">Connectant…</span>
+      </button>
+      <button id="btn-perfil" class="icon-btn" type="button" aria-label="El meu nom">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
+        </svg>
+      </button>
+    </header>
+
+    <div class="controls">
+      <div id="sentit" class="segmented" role="tablist" hidden>
+        <button type="button" data-sentit="anada" class="is-active">Anada</button>
+        <button type="button" data-sentit="tornada">Tornada</button>
+      </div>
+      <div class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-4-4" />
+        </svg>
+        <input
+          id="cerca"
+          type="search"
+          placeholder="Cerca un nom…"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+        />
+      </div>
+      <div class="filters">
+        <select id="filtre-colla" aria-label="Filtra per colla">
+          <option value="">Totes les colles</option>
+        </select>
+        <select id="filtre-talla" aria-label="Filtra per talla" hidden>
+          <option value="">Totes les talles</option>
+        </select>
+        <select id="filtre-estat" aria-label="Filtra per estat">
+          <option value="">Tothom</option>
+          <option value="pendents">Pendents</option>
+          <option value="marcats">Marcats</option>
+        </select>
+      </div>
+      <div class="progress">
+        <div class="progress__bar"><span id="progress-fill"></span></div>
+        <span id="progress-text">–</span>
+      </div>
+    </div>
+
+    <main id="llista" class="llista" aria-live="polite">
+      <p class="empty">Carregant llistes…</p>
+    </main>
+
+    <nav class="tabs" aria-label="Seccions">
+      <button type="button" data-tab="autocars" class="is-active">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="3" width="16" height="15" rx="3" />
+          <path d="M4 11h16M8 21v-3M16 21v-3" />
+          <circle cx="8" cy="14.5" r="1" />
+          <circle cx="16" cy="14.5" r="1" />
+        </svg>
+        Autocars
+      </button>
+      <button type="button" data-tab="polseres">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <ellipse cx="12" cy="12" rx="9" ry="5" />
+          <ellipse cx="12" cy="12" rx="5.5" ry="2.5" />
+        </svg>
+        Polseres
+      </button>
+      <button type="button" data-tab="samarretes">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 3 3 6l2 4 2-1v12h10V9l2 1 2-4-5-3c0 2-1.8 3-4 3S8 5 8 3Z" />
+        </svg>
+        Samarretes
+      </button>
+    </nav>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
