@@ -418,6 +418,27 @@
   });
 
   $('#btn-perfil').addEventListener('click', demanaNom);
+
+  // Refresc manual: el servidor torna a llegir el full saltant-se la memòria cau.
+  const btnRefresca = $('#btn-refresca');
+  btnRefresca.addEventListener('click', async () => {
+    btnRefresca.disabled = true;
+    btnRefresca.classList.add('is-girant');
+    try {
+      await enviaPendents();
+      llistes = (await crida({ a: 'llistes', fresc: 1 })).llistes;
+      omplecolles();
+      aplicaServidor(await crida({ a: 'estat', fresc: 1 }));
+      toast('Dades i marques actualitzades');
+    } catch {
+      errorSync = true;
+      pintaSync();
+      toast("No s'ha pogut refrescar. Comprova la connexió.");
+    } finally {
+      btnRefresca.disabled = false;
+      btnRefresca.classList.remove('is-girant');
+    }
+  });
   els.sync.addEventListener('click', () => {
     toast(
       darreraSync

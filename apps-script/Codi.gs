@@ -9,6 +9,7 @@
  * Endpoints (web app, "Qualsevol persona"):
  *   GET  ?a=llistes&codi=…   → { llistes: { anada, tornada, polseres, samarretes } }
  *   GET  ?a=estat&codi=…     → { v, marques: { "<llista>|<id>": { per, t } } }
+ *        (amb &fresc=1 qualsevol dels dos GET torna a llegir el full)
  *   POST {codi, llista, id, marcat, per}  → igual que ?a=estat
  *
  * Si la propietat de l'script CODI té valor, totes les peticions l'han de
@@ -24,7 +25,12 @@ const CACHE_MARQUES_S = 21600;
 function doGet(e) {
   const p = (e && e.parameter) || {};
   if (!codiValid_(p.codi)) return json_({ error: 'codi' });
-  if (p.a === 'llistes') return json_({ llistes: llistes_() });
+  // fresc=1 (botó de refrescar) torna a llegir el full saltant-se la memòria cau.
+  if (p.a === 'llistes') {
+    if (p.fresc) CacheService.getScriptCache().remove('llistes');
+    return json_({ llistes: llistes_() });
+  }
+  if (p.fresc) return json_(desaEstatACache_(llegeixEstatDelFull_()));
   return json_(estat_());
 }
 

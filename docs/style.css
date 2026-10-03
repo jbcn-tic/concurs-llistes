@@ -136,6 +136,20 @@ svg {
   cursor: pointer;
 }
 
+.icon-btn:disabled {
+  cursor: default;
+}
+
+.icon-btn.is-girant svg {
+  animation: gira 0.8s linear infinite;
+}
+
+@keyframes gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* ---------- Controls ---------- */
 
 .controls {
